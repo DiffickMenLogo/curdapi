@@ -12,7 +12,7 @@ export const myApi = async (req: IncomingMessage, res: ServerResponse) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify(users));
-            } else if (req.url.match(/\/api\/users\/([0-9]+)/) && req.method === 'GET') {
+            } else if (req.url.match(/\/api\/users\//) && req.method === 'GET') {
                 const id = req.url.split('/')[3];
                 if (!validate(id)) {
                     res.statusCode = 400;
@@ -58,7 +58,7 @@ export const myApi = async (req: IncomingMessage, res: ServerResponse) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(updatedUser));
                 }
-            } else if (req.url.match(/\/api\/users\/([0-9]+)/) && req.method === 'DELETE') {
+            } else if (req.url.match(/\/api\/users\//) && req.method === 'DELETE') {
                 const id = req.url.split('/')[3];
                 if (!validate(id)) {
                     res.statusCode = 400;

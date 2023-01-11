@@ -57,7 +57,7 @@ var myApi = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                 res.end(JSON.stringify(users_2));
                 return [3 /*break*/, 24];
             case 2:
-                if (!(req.url.match(/\/api\/users\/([0-9]+)/) && req.method === 'GET')) return [3 /*break*/, 7];
+                if (!(req.url.match(/\/api\/users\//) && req.method === 'GET')) return [3 /*break*/, 7];
                 id_1 = req.url.split('/')[3];
                 if (!!(0, uuid_1.validate)(id_1)) return [3 /*break*/, 3];
                 res.statusCode = 400;
@@ -123,7 +123,7 @@ var myApi = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                 _a.label = 17;
             case 17: return [3 /*break*/, 24];
             case 18:
-                if (!(req.url.match(/\/api\/users\/([0-9]+)/) && req.method === 'DELETE')) return [3 /*break*/, 23];
+                if (!(req.url.match(/\/api\/users\//) && req.method === 'DELETE')) return [3 /*break*/, 23];
                 id_3 = req.url.split('/')[3];
                 if (!!(0, uuid_1.validate)(id_3)) return [3 /*break*/, 19];
                 res.statusCode = 400;
