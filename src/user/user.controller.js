@@ -82,9 +82,10 @@ var Users = /** @class */ (function () {
             });
         });
     };
-    Users.prototype.updateUser = function (id) {
+    Users.prototype.updateUser = function (id, body) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log(id, body);
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         var user = users_js_1["default"].find(function (u) { return u.id === id; });
                         if (!user) {
@@ -92,7 +93,7 @@ var Users = /** @class */ (function () {
                         }
                         else {
                             var index = users_js_1["default"].indexOf(user);
-                            var updatedUser = __assign(__assign({}, user), req.body);
+                            var updatedUser = __assign(__assign({}, user), body);
                             users_js_1["default"][index] = updatedUser;
                             resolve(updatedUser);
                         }

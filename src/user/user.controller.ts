@@ -1,3 +1,4 @@
+import { IncomingMessage } from 'http';
 import { v4 } from 'uuid';
 import users from '../data/users.js';
 import { User, UsersService } from '../models/user.model.js';
@@ -23,14 +24,15 @@ export class Users implements UsersService {
         }) as Promise<User>;
     }
 
-    async updateUser(id: string, req: any) {
+    async updateUser(id: string, body: User) {
+        console.log(id, body);
         return new Promise((resolve, reject) => {
             const user = users.find((u: User) => u.id === id);
             if (!user) {
                 reject('User not found');
             } else {
                 const index = users.indexOf(user);
-                const updatedUser = { ...user, ...req.body };
+                const updatedUser = { ...user, ...body };
                 users[index] = updatedUser;
                 resolve(updatedUser);
             }

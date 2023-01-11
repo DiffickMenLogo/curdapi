@@ -41,9 +41,9 @@ export const myApi = async (req: IncomingMessage, res: ServerResponse) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(newUser));
                 }
-            } else if (req.url.match(/\/api\/users\/([0-9]+)/) && req.method === 'PUT') {
+            } else if (req.url.match(/\/api\/users\//) && req.method === 'PUT') {
                 const id = req.url.split('/')[3];
-                const user = (await getReqData(req)) as string;
+                const body = (await getReqData(req)) as string;
                 if (!validate(id)) {
                     res.statusCode = 400;
                     res.setHeader('Content-Type', 'application/json');
@@ -53,7 +53,7 @@ export const myApi = async (req: IncomingMessage, res: ServerResponse) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify({ message: 'User not found' }));
                 } else {
-                    const updatedUser = await new Users().updateUser(id, JSON.parse(user));
+                    const updatedUser = await new Users().updateUser(id, JSON.parse(body));
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify(updatedUser));
@@ -84,5 +84,6 @@ export const myApi = async (req: IncomingMessage, res: ServerResponse) => {
         res.statusCode = 500;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ message: 'Server error' }));
+        console.log(err);
     }
 };
